@@ -1,0 +1,44 @@
+---
+title: "Data"
+date: "`r Sys.Date()`"
+editor: 
+    render-on-save: false
+---
+
+```{r}
+#| label: setup
+
+# load packages
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(modelsummary))
+
+# read data
+source("./src/lib/io.R")
+df <- read_csv("./data/raw/data.csv")
+```
+
+```{r}
+#| label: data cleaning
+
+df <- df |> mutate(
+  attendance_percent = attendance_percent / 100,
+  previous_scores = previous_scores / 100,
+  exam_score = exam_score / 100
+)
+
+write_csv(df, "./data/processed/data.csv")
+```
+
+```{r}
+#| label: reporting
+#| tbl-cap: Data summary
+
+datasummary_skim(
+  df,
+  fun_numeric = list(
+    Mean = Mean,
+    SD = SD
+  ),
+  escape = FALSE
+)
+```

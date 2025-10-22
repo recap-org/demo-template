@@ -1,0 +1,94 @@
+\def\anonymized{0} % uncomment to compile a non-anonymized version of the document
+% \def\anonymized{1} % uncomment to compile the anonymized version of the document
+
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[normalem]{ulem}
+\usepackage{
+  amsmath,amsthm,amscd,amsfonts,amssymb,
+  threeparttable,booktabs,pdflscape,tabularray,
+  graphicx,float,hyperref,
+  lineno,fancyhdr,
+  natbib,
+  setspace,siunitx,
+  xr,appendix,
+  codehigh
+}
+\UseTblrLibrary{booktabs}
+\UseTblrLibrary{siunitx}
+\newcommand{\tinytableTabularrayUnderline}[1]{\underline{#1}}
+\newcommand{\tinytableTabularrayStrikeout}[1]{\sout{#1}}
+\NewTableCommand{\tinytableDefineColor}[3]{\definecolor{#1}{#2}{#3}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{axiom}{Axiom}
+\newtheorem{hypothesis}{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+% \externaldocument{../article/main} % uncomment to tie to the main manuscript (use relative path)
+
+\title{
+  Online Appendix. Title
+}
+\author{
+  Morgan Doe
+  \thanks{
+    Aix-Marseille University, CNRS, AMSE, France, {\tt \href{mailto:morgan.doe@univ-amu.fr}{morgan.doe@univ-amu.fr}.}
+  }
+}
+\date{\today}
+
+% ---- Publication ready manuscript has a fancy page header ----
+\if\anonymized0
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Online Appendix. Title}
+\rhead{
+  Doe
+}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\fi
+
+% ---- Anonymized manuscript specific layout ---
+\if \anonymized1
+\onehalfspacing % wider line spacing
+\linenumbers % add line numbers
+\fi
+
+\renewcommand{\thetable}{A\arabic{table}}
+\renewcommand{\thefigure}{A\arabic{figure}}
+
+\begin{document}
+\sloppy % avoid overfull hboxes
+
+\if\anonymized0
+\maketitle
+\fi
+
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+\section{Introduction}
+
+% ---- Bibliography ----
+\newpage
+%TC:ignore
+% \bibliographystyle{aer}
+% \bibliography{library}
+%TC:endignore
+
+\end{document}

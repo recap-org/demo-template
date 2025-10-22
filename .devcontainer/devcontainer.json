@@ -1,0 +1,53 @@
+// For format details, see https://aka.ms/devcontainer.json. 
+{
+    "name": "recap-template",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+    // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
+    "features": {
+        "ghcr.io/rocker-org/devcontainer-features/r-rig:1": {
+            "version": "4.5.1",
+            "installREnv": true,
+            "installRadian": true
+        },
+        "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {},
+        // Uncomment to use a shared cache of R packages. Useful if working locally. More info: https://rstudio.github.io/renv/articles/docker.html
+        // "ghcr.io/rocker-org/devcontainer-features/renv-cache:latest": {}
+        "ghcr.io/prulloac/devcontainer-features/latex:1": {
+            "scheme": "basic",
+            "packages": "a4wide,achemso,adjustbox,ae,algorithmicx,algorithms,amscls,anyfontsize,apacite,appendix,awesomebox,babel-english,babel-french,bbm-macros,beamer,biber,biblatex,bookmark,breakurl,caption,carlisle,catoptions,ccicons,charter,chemgreek,cite,cleveref,collectbox,colortbl,comment,count1to,courier,crop,csquotes,datetime,dblfloatfix,doclicense,draftwatermark,eepic,endfloat,endnotes,enumitem,environ,epsf,epstopdf,eso-pic,esvect,etex-pkg,eurosym,everysel,everyshi,expex,extsizes,fancyhdr,floatflt,floatrow,fmtcount,fontawesome5,fontaxes,footmisc,forarray,hardwrap,hyperxmp,hyphen-french,hyphenat,jknapltx,koma-script,langsci,lastpage,latexindent,lettrine,libertine,lineno,lipsum,listings,logreq,ltxkeys,ly1,makecell,makeindex,marginnote,marvosym,mathalpha,mathpazo,mathspec,mathtools,mdframed,memoir,metalogo,mhchem,microtype,minifp,mnras,modes,morefloats,moreverb,multirow,multitoc,mweights,ncntrsbk,needspace,newfloat,newtx,ntgclass,palatino,parskip,pbox,pdfcol,pdflscape,pdfpages,pdfsync,pgf,picinpar,polyglossia,prelim2e,preprint,preview,psfrag,ragged2e,realscripts,revtex4-1,roboto,rsfs,sectsty,seqsplit,setspace,sidecap,sidenotes,siunitx,soul,srcltx,standalone,stix,stmaryrd,sttools,subfig,subfigure,symbol,tabto-ltx,tabu,tcolorbox,tex-gyre,texcount,textcase,thmtools,threeparttable,threeparttablex,thumbpdf,tikzfill,titlesec,totcount,totpages,translator,trimspaces,tufte-latex,ucs,ulem,units,upquote,urlbst,varwidth,vmargin,vruler,wallpaper,wrapfig,xargs,xltxtra,xpatch,xstring,xwatermark,xypic,zapfchan,zref,economic,codehigh,collection-pictures,tabularray,moloch,ninecolors,relsize,fira,bbm,datatool,tracklang,harvard,catchfile"
+        },
+        "ghcr.io/devcontainers-extra/features/cookiecutter:2": {},
+    },
+    // 👇 Configure tool-specific properties.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "RDebugger.r-debugger",
+                "ms-vscode.makefile-tools"
+            ],
+            "settings": {
+                "r.bracketedPaste": true,
+                "r.rterm.linux": "radian",
+                "r.plot.useHttpgd": true,
+                "terminal.integrated.defaultProfile.linux": "bash"
+            }
+        }
+    },
+    // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": [],
+    // 👇 When creating the container, restore the packages listed in renv.lock.
+    "postCreateCommand": "Rscript -e 'renv::restore()'",
+    "containerEnv": {
+        // 👇 Install R packages with pak for speed and auto-installation of system dependencies. 
+        // More info: https://rstudio.github.io/renv/reference/config.html#renv-config-pak-enabled
+        "RENV_CONFIG_PAK_ENABLED": "TRUE",
+        "PKG_SYSREQS": "TRUE"
+    },
+    // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+    // "remoteUser": "root"
+    // 👇 Bind local folders into the container
+    "mounts": [
+        // Mount a folder containing external raw data into the project's data/raw folder.
+        // "source=${localEnv:HOME}${localEnv:USERPROFILE}/data,target=${containerWorkspaceFolder}/data/raw,type=bind,consistency=cached",
+    ]
+}

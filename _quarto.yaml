@@ -1,0 +1,39 @@
+project:
+    execute-dir: project
+    output-dir: bin
+
+author: "Morgan Doe"
+
+editor:
+    render-on-save: false
+
+format:
+    pdf:
+        fig-width: 6.2
+        lof: true
+        lot: true
+        number-sections: true
+        geometry:
+            - top=1in
+            - bottom=1in
+            - left=1in
+            - right=1in
+        include-in-header:
+            - text: |
+                \usepackage{tabularray}
+                \usepackage{float}
+                \usepackage{graphicx}
+                \usepackage{rotating}
+                \usepackage[normalem]{ulem}
+                \UseTblrLibrary{siunitx}
+                \newcommand{\tinytableTabularrayUnderline}[1]{\underline{#1}}
+                \newcommand{\tinytableTabularrayStrikeout}[1]{\sout{#1}}
+                \NewTableCommand{\tinytableDefineColor}[3]{\definecolor{#1}{#2}{#3}}
+
+knitr:
+    opts_chunk:
+        echo: false
+        R.options:
+            knitr.kable.NA: ""
+            dplyr.summarise.inform: false
+

@@ -1,0 +1,96 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage[authoryear]{natbib}
+\usepackage{xcolor} % For colors
+\usepackage{etoolbox} % Needed for patching commands
+\usepackage{
+  threeparttable,booktabs,pdflscape,tabularray,multirow,
+  graphicx,float,hyperref,subfigure,
+  setspace,siunitx,codehigh,
+  bbm,
+  tikz,
+  relsize,xparse
+}
+\usepackage[semibold,light]{FiraSans}
+\usepackage{FiraMono}
+
+\definecolor{blue}{HTML}{4682B4}
+\definecolor{red}{HTML}{FF6347}
+\definecolor{green}{HTML}{66CD00}
+
+\UseTblrLibrary{booktabs}
+\UseTblrLibrary{siunitx}
+\newcommand{\tinytableTabularrayUnderline}[1]{\underline{#1}}
+\newcommand{\tinytableTabularrayStrikeout}[1]{\sout{#1}}
+\NewTableCommand{\tinytableDefineColor}[3]{\definecolor{#1}{#2}{#3}}
+
+% Redefine citation commands to be smaller and light gray
+\RenewDocumentCommand{\cite}{O{} O{} m}{%
+  \textcolor{gray}{\smaller\citep[#1][#2]{#3}}%
+}
+\newcommand{\textscbf}[1]{\textbf{\textsc{#1}}}
+
+\sisetup{detect-all}
+
+\usetheme[titleformat=smallcaps,progressbar=frametitle,numbering=none]{moloch}
+\setbeamertemplate{page number in head/foot}[appendixframenumber]
+
+\title{Title}
+\author{Morgan Doe}
+\institute{Aix-Marseille School of Economics}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Motivation}
+  \hypertarget{starting_page}{}
+  Sic transit gloria mundi. \cite{Doe}
+  \hyperlink{appendix}{\beamergotobutton{Example link}}
+\end{frame}
+
+\begin{frame}[plain]
+  \begin{table}[H]
+    \centering
+    \footnotesize
+    \input{./assets/tables/table.tex}
+    \caption{A nice table}
+    \label{tab:nice_table}
+  \end{table}
+\end{frame}
+
+\begin{frame}[plain]
+  \begin{figure}
+    \centering
+    \includegraphics[height=\textheight]{./assets/figures/figure.pdf}
+    \caption{A nice figure}
+    \label{fig:nice_figure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[standout]
+  \Large{Thank you}
+  \vspace{1em}
+
+  \small{{\tt https://mdoe.net}}
+
+  \small{{\tt morgan.doe@univ-amu.fr}}
+\end{frame}
+
+\appendix
+\section{Appendix}
+
+\begin{frame}{Example Appendix Frame}
+  \hypertarget{appendix}{}
+  \hyperlink{starting_page}{\beamerreturnbutton{Back}}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+  \tiny
+  \begingroup
+  \renewcommand{\section}[2]{} % Remove automatic "References" title
+  \bibliographystyle{aer} % Or any style you prefer
+  \bibliography{library} % Make sure to replace with your .bib file
+  \endgroup
+\end{frame}
+
+\end{document}

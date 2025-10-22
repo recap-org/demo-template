@@ -1,0 +1,45 @@
+---
+title: "Analysis"
+date: "`r Sys.Date()`"
+---
+
+```{r}
+#| label: setup
+
+# load packages
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(modelsummary))
+
+# load functions
+source("./src/lib/io.R")
+
+# load data
+df <- read_csv("./data/processed/data.csv")
+```
+
+```{r}
+#| label: analysis
+#| tbl-cap: Regression table
+
+models <- list(
+  lm(exam_score ~ previous_scores, data = df),
+  lm(exam_score ~ hours_studied + sleep_hours + attendance_percent + previous_scores, data = df)
+)
+```
+
+```{r}
+#| label: table
+#| tbl-cap: Regression table
+
+m <- modelsummary(models, output = "tinytable")
+m # show the table in the quarto report
+save_table(m, "table") # save the table to ./assets/tables/table.tex; see ./src/lib/io.R for documentation
+```
+
+```{r}
+#| label: plot
+#| fig-cap: Coefficient plot
+
+modelplot(models)
+save_figure("figure") # save the figure to ./assets/figures/figure.pdf; see ./src/lib/io.R for documentation
+```

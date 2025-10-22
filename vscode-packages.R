@@ -1,0 +1,5 @@
+renv::install("ManuelHentschel/VscDebugger")
+renv::install("nx10/httpgd")
+library(languageserver)
+library(vscDebugger)
+library(httpgd)

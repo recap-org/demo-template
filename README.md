@@ -30,7 +30,7 @@ You have two options:
 ### Try it out online
 
 1. Select **Open in a codespace**. 
-2. Wait for the codespace to be created and started. **This may take up to 10 minutes.** ☕
+2. Wait for the codespace to be created and started. **This may take up to 20 minutes.** ☕
 3. Once the codespace is ready, you can follow the instructions in the **Basic demo** section below.
 
 ### Make your own copy
